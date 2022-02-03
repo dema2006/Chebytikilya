@@ -34,15 +34,13 @@ update_map()
 screen.blit(pygame.image.load(map_file), (0, 0))
 # Переключаем экран и ждем закрытия окна.
 while pygame.event.wait().type != pygame.QUIT:
-    for i in pygame.event.get():
-        if i.type == pygame.KEYDOWN:
-            if i.key == 280 and mpz < 19:
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_PAGEDOWN and mpz < 19:
                 mpz += 1
-                print(1)
-            if i.key == 281 and mpz > 2:
+            if event.key == pygame.K_PAGEUP and mpz > 2:
                 mpz -= 1
-                print(2)
-        if i.type == pygame.QUIT:
+        if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit(0)
     update_map()
