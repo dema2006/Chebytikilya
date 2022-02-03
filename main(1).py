@@ -33,13 +33,13 @@ screen = pygame.display.set_mode((600, 450))
 update_map()
 screen.blit(pygame.image.load(map_file), (0, 0))
 # Переключаем экран и ждем закрытия окна.
-while pygame.event.wait().type != pygame.QUIT:
+while True:
     for i in pygame.event.get():
         if i.type == pygame.KEYDOWN:
-            if i.key == 280 and mpz < 19:
+            if i.key == pygame.K_PAGEDOWN and mpz < 19:
                 mpz += 1
                 print(1)
-            if i.key == 281 and mpz > 2:
+            if i.key == pygame.K_PAGEUP and mpz > 2:
                 mpz -= 1
                 print(2)
         if i.type == pygame.QUIT:
@@ -49,7 +49,6 @@ while pygame.event.wait().type != pygame.QUIT:
     screen.blit(pygame.image.load(map_file), (0, 0))
     pygame.display.flip()
 
-pygame.quit()
 
 # Удаляем за собой файл с изображением.
 os.remove(map_file)
