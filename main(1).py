@@ -8,7 +8,7 @@ deviation_x = 0
 deviation_y = 0
 mpz = 15
 mpt = 0
-list_mpt = ["map", "sat"]
+list_mpt = ["map", "sat", 'sat%2Cskl']
 
 map_file = "map.png"
 
@@ -52,7 +52,7 @@ while pygame.event.wait().type != pygame.QUIT:
                 deviation_x -= 0.002 * (19 - mpz)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                if mpt < 1:
+                if mpt < 2:
                     mpt += 1
                 else:
                     mpt = 0
