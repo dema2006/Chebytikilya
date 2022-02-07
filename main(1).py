@@ -43,13 +43,13 @@ while pygame.event.wait().type != pygame.QUIT:
             if event.key == pygame.K_PAGEUP and mpz > 2:
                 mpz -= 1
             if event.key == pygame.K_UP:
-                deviation_y += 0.001
+                deviation_y += 0.002 * (19 - mpz)
             if event.key == pygame.K_DOWN:
-                deviation_y -= 0.001
+                deviation_y -= 0.002 * (19 - mpz)
             if event.key == pygame.K_RIGHT:
-                deviation_x += 0.001
+                deviation_x += 0.002 * (19 - mpz)
             if event.key == pygame.K_LEFT:
-                deviation_x -= 0.001
+                deviation_x -= 0.002 * (19 - mpz)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 if mpt < 1:
