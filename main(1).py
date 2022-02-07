@@ -4,15 +4,17 @@ import sys
 import pygame
 import requests
 
-
+deviation_x = 0
+deviation_y = 0
 mpz = 15
-mpt = "map"
+mpt = 0
+list_mpt = ["map", "sat"]
 
 map_file = "map.png"
 
 
 def update_map():
-    map_request = f"http://static-maps.yandex.ru/1.x/?ll=37.530887,55.703118&z={mpz}&l={mpt}"
+    map_request = f"http://static-maps.yandex.ru/1.x/?ll={37.530887 + deviation_x},{55.703118 + deviation_y}&z={mpz}&l={list_mpt[mpt]}"
     response = requests.get(map_request)
 
     if not response:
@@ -40,6 +42,20 @@ while pygame.event.wait().type != pygame.QUIT:
                 mpz += 1
             if event.key == pygame.K_PAGEUP and mpz > 2:
                 mpz -= 1
+            if event.key == pygame.K_UP:
+                deviation_y += 0.001
+            if event.key == pygame.K_DOWN:
+                deviation_y -= 0.001
+            if event.key == pygame.K_RIGHT:
+                deviation_x += 0.001
+            if event.key == pygame.K_LEFT:
+                deviation_x -= 0.001
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                if mpt < 1:
+                    mpt += 1
+                else:
+                    mpt = 0
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit(0)
